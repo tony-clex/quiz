@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.jsx
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { QuizProvider, useQuiz } from "./Context/QuizContext";
+import { fetchQuestions } from "./Api/FetchQuestions";
 
-function App() {
-  const [count, setCount] = useState(0)
+import LandingPage from "./components/LandinPage/LandingPage";
+import QuestionPage from "./components/Question/Question";
+import ResultsPage from "./components/ResultPage/ResultPage";
+
+function QuizApp() {
+  const { state, dispatch } = useQuiz();
+
+  useEffect(() => {
+    async function loadQuestions() {
+      try {
+        const questions = await fetchQuestions();
+        dispatch({ type: "SET_QUESTIONS", payload: questions });
+      } catch (err) {
+        dispatch({ type: "SET_ERROR", payload: err.message });
+      }
+    }
+
+    loadQuestions();
+  }, [dispatch]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/question/:questionNumber" element={<QuestionPage />} />
+      <Route path="/results" element={<ResultsPage />} />
+    </Routes>
+    
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <QuizProvider>
+      <Router>
+        <QuizApp />
+      </Router>
+    </QuizProvider>
+  );
+}
