@@ -1,11 +1,21 @@
 export async function fetchQuestions() {
-  const API_URL =
-    "https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean";
+  const API_URL = "https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean";
 
   const response = await fetch(API_URL);
-  if (!response.ok) throw new Error("Failed to fetch questions");
+
+  if (response.status === 429) {
+    throw new Error("Rate limit exceeded. Please wait 5 seconds before retrying.");
+  }
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch questions: ${response.status} ${response.statusText}`);
+  }
 
   const data = await response.json();
+
+  if (!data.results || !Array.isArray(data.results)) {
+    throw new Error("Invalid data format received from API.");
+  }
 
   return data.results.map((q, index) => ({
     id: index + 1,

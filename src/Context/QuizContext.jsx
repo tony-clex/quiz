@@ -5,7 +5,7 @@ const QuizContext = createContext();
 const initialState = {
   questions: [],
   currentQuestionIndex: 0,
-  answers: [], // { questionId, userAnswer (true/false) }
+  answers: [], 
   loading: true,
   error: null,
 };

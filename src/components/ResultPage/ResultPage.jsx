@@ -1,7 +1,7 @@
-// src/components/ResultsPage.jsx
 import React from "react"
 import { useQuiz } from "../../Context/QuizContext";
 import { useNavigate } from "react-router-dom";
+import "./ResultPage.module.css"
 export default function ResultsPage() {
   const { state, dispatch } = useQuiz();
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ export default function ResultsPage() {
       </p>
 
       <ul>
-        {questions.map((q, idx) => {
+        {questions.map((q, ) => {
           const userAnswer = answers.find((a) => a.questionId === q.id)?.userAnswer;
           const isCorrect = userAnswer === q.correct_answer;
           return (
