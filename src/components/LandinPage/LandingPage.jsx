@@ -25,8 +25,8 @@ export default function LandingPage() {
   };
 
   return (
-    <div>
-      <h1>Welcome to the Quiz</h1>
+    <div className="landingbox">
+      <h1>Welcome to the Quiz Game!</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <button onClick={startQuiz} disabled={loading}>
         {loading ? "Loading..." : "Start Quiz"}

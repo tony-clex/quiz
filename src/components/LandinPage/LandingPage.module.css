@@ -1,4 +1,4 @@
-.landingpage {
+.landing-page {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,13 +14,13 @@
   text-align: center;
 }
 
-.landingpage h1 {
+.landing-page h1 {
   font-size: 2.2rem;
   margin-bottom: 1.5rem;
   color: #333;
 }
 
-.landingpage button {
+.landing-page button {
   padding: 0.75rem 2rem;
   background-color: #4a90e2;
   border: none;
@@ -31,16 +31,16 @@
   transition: background-color 0.3s ease;
 }
 
-.landingpage button:hover:not(:disabled) {
+.landing-page button:hover:not(:disabled) {
   background-color: #357abd;
 }
 
-.landingpage button:disabled {
+.landing-page button:disabled {
   background-color: #a0bff9;
   cursor: not-allowed;
 }
 
-.landingpage p.errormessage {
+.landing-page p.error-message {
   color: #d9534f;
   font-weight: 600;
   margin-bottom: 1rem;
