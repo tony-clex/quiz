@@ -1,28 +1,27 @@
-// src/components/QuestionPage.jsx
-import React, { useEffect } from "react";
+import React from "react";
 import { useQuiz } from "../../Context/QuizContext";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
+import "./Question.module.css";
 
 export default function QuestionPage() {
   const { state, dispatch } = useQuiz();
-  const { currentQuestionIndex, questions, answers } = state;
+  const { currentQuestionIndex, questions, loading, error } = state;
   const { questionNumber } = useParams();
   const navigate = useNavigate();
 
   const questionIdx = Number(questionNumber) - 1;
 
-  useEffect(() => {
-    // Prevent user from accessing questions out of order or going back
-    if (questionIdx > currentQuestionIndex) {
-      navigate(`/question/${currentQuestionIndex + 1}`, { replace: true });
+  if (loading) return <p>Loading questions...</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (!questions || questions.length === 0)
+    return <p>No questions available.</p>;
+  if (questionIdx !== currentQuestionIndex) {
+    if (currentQuestionIndex < questions.length) {
+      return <Navigate to={`/question/${currentQuestionIndex + 1}`} replace />;
+    } else {
+      return <Navigate to="/results" replace />;
     }
-    if (questionIdx < currentQuestionIndex) {
-      navigate(`/question/${currentQuestionIndex + 1}`, { replace: true });
-    }
-  }, [questionIdx, currentQuestionIndex, navigate]);
-
-  if (state.loading) return <p>Loading questions...</p>;
-  if (state.error) return <p>Error: {state.error}</p>;
+  }
 
   const question = questions[questionIdx];
   if (!question) return <p>Question not found.</p>;
@@ -33,7 +32,6 @@ export default function QuestionPage() {
       payload: { questionId: question.id, userAnswer: answer },
     });
 
-    // Navigate to next question or results
     if (questionIdx + 1 < questions.length) {
       navigate(`/question/${questionIdx + 2}`);
     } else {
