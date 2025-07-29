@@ -41,7 +41,7 @@ export default function LandingPage() {
 
       <button onClick={startQuiz} disabled={loading} className="start-btn">
         {loading ? (
-          <span>Loading...</span> // Optionally add a spinner here
+          <span>Loading...</span> 
         ) : (
           "Start Quiz"
         )}

@@ -204,7 +204,7 @@ button:active {
 
 
 .startButton {
-  background: #fff;
+  background: #f9f6f6;
   color: #553285;
   border: none;
   outline: none;
@@ -350,7 +350,6 @@ h2 {
   transform: translateY(-2px);
 }
 
-/* Responsive styles for mobile devices */
 @media (max-width: 600px) {
   body {
     font-size: 14px;
@@ -359,7 +358,7 @@ h2 {
 
   #root {
     padding: 15px;
-    align-items: center; /* center root content on smaller screens */
+    align-items: center; /
   }
 
   .quiz-container {
