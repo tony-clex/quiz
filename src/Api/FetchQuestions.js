@@ -1,4 +1,3 @@
-
 export const fetchQuestions = async ({
   amount = 10,
   difficulty = "hard",
@@ -15,6 +14,10 @@ export const fetchQuestions = async ({
   }
 
   const data = await response.json();
+  if (!data.results || !Array.isArray(data.results)) {
+    throw new Error("Invalid data format received from API.");
+  }
+
   if (!data.results || !Array.isArray(data.results)) {
     throw new Error("Invalid data format received from API.");
   }

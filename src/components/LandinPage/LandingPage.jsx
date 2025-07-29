@@ -6,6 +6,7 @@ import "./LandingPage.module.css";
 
 export default function LandingPage() {
   const { dispatch } = useQuiz();
+
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
