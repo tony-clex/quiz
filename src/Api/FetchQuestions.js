@@ -1,4 +1,3 @@
-// src/api/fetchQuestions.js
 
 export const fetchQuestions = async ({
   amount = 10,
@@ -24,6 +23,5 @@ export const fetchQuestions = async ({
     id: index + 1,
     question: q.question,
     correct_answer: q.correct_answer === "True",
-    // Optionally include incorrect_answers, category, etc.
   }));
 };

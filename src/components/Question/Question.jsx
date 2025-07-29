@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuiz } from "../../Context/QuizContext";
 import { useParams, useNavigate, Navigate } from "react-router-dom";
-import "./Question.module.css";
+import CategorySelection from "../Category/CategorySelection";
 
 export default function QuestionPage() {
   const { state, dispatch } = useQuiz();

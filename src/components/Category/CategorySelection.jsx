@@ -13,7 +13,6 @@ export default function CategorySelection() {
   const navigate = useNavigate();
 
   const handleCategorySelect = (categoryId) => {
-    // Navigate to the first question of the selected category
     const categoryName = categories.find(cat => cat.id === categoryId)?.name.toLowerCase();
     navigate(`/category/${categoryName}/question/1`);
   };

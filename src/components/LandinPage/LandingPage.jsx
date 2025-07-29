@@ -12,7 +12,7 @@ export default function LandingPage() {
 
   const startQuiz = async () => {
     setLoading(true);
-    setError(null); // Reset error state before making a new request
+    setError(null); 
     try {
       const questions = await fetchQuestions();
       dispatch({ type: "SET_QUESTIONS", payload: questions });
