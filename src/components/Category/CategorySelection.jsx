@@ -12,6 +12,8 @@ const categories = [
 export default function CategorySelection() {
   const navigate = useNavigate();
 
+  
+
   const handleCategorySelect = (categoryId) => {
     const categoryName = categories.find(cat => cat.id === categoryId)?.name.toLowerCase();
     navigate(`/category/${categoryName}/question/1`);
