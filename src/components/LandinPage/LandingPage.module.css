@@ -1,0 +1,47 @@
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 2px solid #4a90e2;
+  border-radius: 12px;
+  background: #f0f8ff;
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+  text-align: center;
+}
+
+.landing-page h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.landing-page button {
+  padding: 0.75rem 2rem;
+  background-color: #4a90e2;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.landing-page button:hover:not(:disabled) {
+  background-color: #357abd;
+}
+
+.landing-page button:disabled {
+  background-color: #a0bff9;
+  cursor: not-allowed;
+}
+
+.landing-page p.error-message {
+  color: #d9534f;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
